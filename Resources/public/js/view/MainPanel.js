@@ -50,6 +50,7 @@ Ext.define('Modera.backend.tools.activitylog.view.MainPanel', {
                         region: 'center',
                         xtype: 'grid',
                         itemId: 'activitiesGrid',
+                        tid: 'activitiesGrid',
                         columns: [
                             {
                                 sortable: false,
@@ -79,6 +80,7 @@ Ext.define('Modera.backend.tools.activitylog.view.MainPanel', {
                                     {
                                         flex: 1,
                                         itemId: 'authorFilter',
+                                        tid: 'authorFilterCombobox',
                                         xtype: 'combo',
                                         emptyText: this.userLabelText,
                                         hideTrigger: true,
@@ -102,6 +104,7 @@ Ext.define('Modera.backend.tools.activitylog.view.MainPanel', {
                                     {
                                         flex: 1,
                                         itemId: 'typeFilter',
+                                        tid: 'typeFilterCombobox',
                                         xtype: 'combo',
                                         emptyText: this.eventTypeText,
                                         hideTrigger: true,
@@ -125,6 +128,7 @@ Ext.define('Modera.backend.tools.activitylog.view.MainPanel', {
                                     {
                                         flex: 2,
                                         itemId: 'messageFilter',
+                                        tid: 'messageFilterField',
                                         xtype: 'textfield',
                                         emptyText: Ext.String.format('{0}...', this.typeHereToFilterText),
                                         plugins: [Ext.create('MFC.form.field.plugin.FieldInputFinishedPlugin', {
@@ -216,6 +220,7 @@ Ext.define('Modera.backend.tools.activitylog.view.MainPanel', {
                                 {
                                     xtype: 'displayfield',
                                     name: 'author',
+                                    tid: 'authorLabelField',
                                     renderer: function(v) {
                                         v = Ext.decode(v);
 
@@ -234,6 +239,7 @@ Ext.define('Modera.backend.tools.activitylog.view.MainPanel', {
                         },
                         {
                             itemId: 'filterByUserBtn',
+                            tid: 'filterByUserBtn',
                             xtype: 'button',
                             text: this.addAsFilterBtnText,
                             handler: function() {
@@ -254,11 +260,13 @@ Ext.define('Modera.backend.tools.activitylog.view.MainPanel', {
                         {
                             style: 'margin-top: 5px',
                             fieldLabel: this.eventTypeLabelText,
+                            tid: 'eventTypeLabelField',
                             name: 'type'
                         },
                         {
                             xtype: 'button',
                             text: this.addAsFilterBtnText,
+                            tid: 'addAsFilterBtn',
                             handler: function() {
                                 var form = me.down('#activityPreview').getForm();
 
@@ -278,6 +286,7 @@ Ext.define('Modera.backend.tools.activitylog.view.MainPanel', {
                             style: 'margin-top: 5px',
                             fieldLabel: this.createdAtLabelText,
                             name: 'createdAt',
+                            tid: 'createdAtLabelField',
                             renderer: function(v) {
                                 var moment = MFC.Date.moment(v);
                                 return MFC.Date.format(moment, 'datetime') + ' (' + moment.fromNow() + ')';
@@ -285,10 +294,12 @@ Ext.define('Modera.backend.tools.activitylog.view.MainPanel', {
                         },
                         {
                             fieldLabel: this.levelLabelText,
+                            tid: 'levelLabelField',
                             name: 'level'
                         },
                         {
                             fieldLabel: this.eventLabelText,
+                            tid: 'eventDescriptionLabelField',
                             name: 'message',
                             fieldStyle: {
                                 display: 'block',
@@ -299,6 +310,7 @@ Ext.define('Modera.backend.tools.activitylog.view.MainPanel', {
                         {
                             xtype: 'button',
                             text: this.detailsLabelText,
+                            tid: 'detailsBtn',
                             handler: function() {
                                 var selection = me.down('grid').getSelectionModel().getSelection();
                                 if (selection[0]) {
